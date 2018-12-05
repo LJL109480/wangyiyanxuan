@@ -16,18 +16,20 @@ export default {
     }
   },
   //获取识物数据
-  async getdiscover({commit}){
+  async getdiscover({commit}, callback){
     const result = await reqdiscover()
     if(result.code === 0){
       const discover = result.data
       commit(RECU_DISCOVER, {discover})
+      typeof callback === 'function' && callback()
     }
   },
-  async getclassify({commit}){
+  async getclassify({commit}, callback){
     const result = await reqclassify()
     if(result.code === 0){
       const classify = result.data
       commit(RECU_CLASSIFY, {classify})
+      typeof callback === 'function' && callback()
     }
   },
 

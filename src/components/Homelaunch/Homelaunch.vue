@@ -11,7 +11,7 @@
       <div class="Home_groceries">
         <div class="groceries_rolling">
           <div class="groceries_goods" v-for="(newItem, index) in homepage.newItemList" :key="index">
-            <img class="groceries_img" :src="newItem.listPicUrl" alt="图片">
+            <img class="groceries_img" v-lazy="newItem.listPicUrl" alt="图片">
             <div class="groceries_food">{{newItem.name}}</div>
             <div class="groceries_hot">{{newItem.simpleDesc}}</div>
             <div class="groceries_price">￥{{newItem.retailPrice}}</div>
@@ -34,7 +34,7 @@
       <div class="Home_groceries gromm_gun">
         <div class="groceries_rolling">
           <div class="groceries_goods" v-for="(popularItem, index) in homepage.popularItemList" :key="index">
-            <img class="groceries_img" :src="popularItem.listPicUrl" alt="图片">
+            <img class="groceries_img" v-lazy="popularItem.listPicUrl" alt="图片">
             <div class="groceries_food">{{popularItem.name}}</div>
             <div class="groceries_hot">{{popularItem.simpleDesc}}</div>
             <div class="groceries_price">￥{{popularItem.retailPrice}}</div>
@@ -49,9 +49,29 @@
   </div>
 </template>
 <script>
+  import BScroll from 'better-scroll'
   export default{
     props:{
       homepage:Object
+    },
+    watch:{
+      homepage(){
+        this.$nextTick(()=>{
+          new BScroll('.Home_groceries',{
+            click:true,
+            scrollX:true,
+          })
+
+        })
+        this.$nextTick(()=>{
+          new BScroll('.gromm_gun',{
+            click:true,
+            scrollX:true,
+          })
+
+        })
+
+      }
     }
   }
 </script>

@@ -1,7 +1,9 @@
 <template>
   <div>
-    <FootGuide />
-    <router-view/>
+    <keep-alive>
+    <router-view />
+    </keep-alive>
+    <FootGuide v-show="$route.meta.ShowFoot"/>
   </div>
 </template>
 <script>
@@ -13,4 +15,5 @@
   }
 </script>
 <style>
+
 </style>

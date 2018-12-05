@@ -3,8 +3,8 @@
  */
 import Mock from 'mockjs'
 import homepage from './datahomepage.json'
-import discover from './datadiscover.json'
-import classify from './datatopic.json'
+import classify from './datadiscover.json'
+import discover from './datatopic.json'
 Mock.mock('/homepage', {
   code: 0,
   data: homepage

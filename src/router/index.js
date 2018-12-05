@@ -8,6 +8,8 @@ const Classify = () =>import ('../pages/Classify/Classify.vue')
 const Discover = () =>import ('../pages/Discover/Discover.vue')
 const Shopcart = () =>import ('../pages/Shopcart/Shopcart.vue')
 const FigureInfo = () =>import ('../pages/FigureInfo/FigureInfo.vue')
+const HomeSynthe = () => import('../components/HomeSynthe/HomeSynthe.vue')
+const Homeheader = () => import('../components/Homeheader/Homeheader.vue')
 
 /*import Discover from '../pages/Discover/Discover.vue'
 import FigureInfo from '../pages/FigureInfo/FigureInfo.vue'
@@ -17,28 +19,61 @@ import Shopcart from '../pages/Shopcart/Shopcart.vue'*/
 Vue.use(VueRouter);
 
 export default new VueRouter({
-  mode: 'history',
   routes:[
     {
       path:'/homepage',
-      component:Homepage
+      component:Homepage,
+      meta:{
+        ShowFoot:true
+      },
+      children:[
+        {
+          path:'/',
+          redirect:'/homepage/homeheader/0'
+        },
+        {
+          path:'/homepage/homeheader/0',
+          component:Homeheader,
+          meta:{
+            ShowFoot:true
+          },
+        },
+        {
+          path:'/homepage/homeheader/:id',
+          component:HomeSynthe,
+          meta:{
+            ShowFoot:true
+          },
+        }
+      ]/**/
     },
     {
       path:'/classify',
-      component:Classify
+      component:Classify,
+      meta:{
+        ShowFoot:true
+      }
     },
     {
       path:'/discover',
-      component:Discover
-
+      component:Discover,
+      meta:{
+        ShowFoot:true
+      }
     },
     {
       path:'/shopcart',
-      component:Shopcart
+      component:Shopcart,
+      meta:{
+        ShowFoot:true
+      }
     },
     {
       path:'/figureinfo',
-      component:FigureInfo
+      component:FigureInfo,
+      meta:{
+        ShowFoot:false
+      }
     },
     {
       path:'/',

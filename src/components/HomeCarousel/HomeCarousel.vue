@@ -4,7 +4,7 @@
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <div class="swiper-slide"  v-for="(focus, index) in homepage.focusList" :key="index">
-            <img :src="focus.picUrl" alt="图片">
+            <img v-lazy="focus.picUrl" alt="图片">
           </div>
         </div>
         <!-- Add Pagination -->
@@ -14,16 +14,31 @@
     <!--退货服务区-->
     <div class="Home_goods">
       <div class="Home_serve" v-for="(policy, index) in homepage.policyDescList" :key="index">
-        <img :src="policy.icon" alt="">
+        <img v-lazy="policy.icon" alt="">
         <span>{{policy.desc}}</span>
       </div>
     </div>
   </div>
 </template>
 <script>
+  import Swiper from 'swiper'
   export default{
     props:{
       homepage:Object
+    },
+    watch:{
+      homepage(){
+        this.$nextTick(()=>{
+          new Swiper('.swiper-container',{
+            loop:true,
+            speed:300,
+            autoplay:true,
+            pagination: {
+              el: '.swiper-pagination',
+            },
+          })
+        })
+      }
     }
   }
 </script>
